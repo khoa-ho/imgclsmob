@@ -204,9 +204,9 @@ class RegNet(tf.keras.Model):
                     name="unit{}".format(j + 1)))
                 in_channels = out_channels
             self.features.add(stage)
-        self.features.add(nn.GlobalAvgPool2D(
-            data_format=data_format,
-            name="final_pool"))
+#         self.features.add(nn.GlobalAvgPool2D(
+#             data_format=data_format,
+#             name="final_pool"))
 
 #         self.output1 = nn.Dense(
 #             units=classes,
