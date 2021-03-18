@@ -208,14 +208,14 @@ class RegNet(tf.keras.Model):
             data_format=data_format,
             name="final_pool"))
 
-        self.output1 = nn.Dense(
-            units=classes,
-            input_dim=in_channels,
-            name="output1")
+#         self.output1 = nn.Dense(
+#             units=classes,
+#             input_dim=in_channels,
+#             name="output1")
 
     def call(self, x, training=None):
         x = self.features(x, training=training)
-        x = self.output1(x)
+#         x = self.output1(x)
         return x
 
 
