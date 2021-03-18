@@ -15,8 +15,8 @@ import tensorflow.keras.layers as nn
 from .common import conv1x1_block, conv3x3_block, SEBlock, SimpleSequential, is_channels_first
 
 
-def mish(x):
-    return x * tf.math.tanh(tf.math.softplus(x))
+def mish():
+    return lambda x: x * tf.math.tanh(tf.math.softplus(x))
 
 
 class RegNetBottleneck(nn.Layer):
@@ -70,7 +70,7 @@ class RegNetBottleneck(nn.Layer):
             self.se = SEBlock(
                 channels=mid_channels,
                 mid_channels=(in_channels // 4),
-                mid_activation=mish,
+                mid_activation=mish(),
                 data_format=data_format,
                 name="se")
         self.conv3 = conv1x1_block(
@@ -135,7 +135,7 @@ class RegNetUnit(nn.Layer):
                 activation=None,
                 data_format=data_format,
                 name="identity_conv")
-        self.activ = mish
+        self.activ = mish()
 
     def call(self, x, training=None):
         if self.resize_identity:
