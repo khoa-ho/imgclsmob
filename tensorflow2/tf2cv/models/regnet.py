@@ -70,7 +70,7 @@ class RegNetBottleneck(nn.Layer):
             self.se = SEBlock(
                 channels=mid_channels,
                 mid_channels=(in_channels // 4),
-                mid_activation=mish(),
+                mid_activation=mish,
                 data_format=data_format,
                 name="se")
         self.conv3 = conv1x1_block(
