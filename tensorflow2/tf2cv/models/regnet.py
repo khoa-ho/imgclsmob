@@ -135,7 +135,7 @@ class RegNetUnit(nn.Layer):
                 activation=None,
                 data_format=data_format,
                 name="identity_conv")
-        self.activ = nn.ReLU()
+        self.activ = mish
 
     def call(self, x, training=None):
         if self.resize_identity:
